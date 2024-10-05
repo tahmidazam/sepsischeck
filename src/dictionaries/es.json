@@ -1,0 +1,108 @@
+{
+  "buttons": {
+    "newCheck": "Nuevo chequeo",
+    "cancel": "Cancelar",
+    "previous": "Anterior",
+    "omit": "Omitir",
+    "add": "Añadir",
+    "next": "Próximo",
+    "complete": "Completa",
+    "download": "Descargar"
+  },
+  "locales": {
+    "en-GB": "🇬🇧 Inglés",
+    "es": "🇪🇸 Español"
+  },
+  "parameters": {
+    "ageBand": {
+      "primary": "Banda de edad",
+      "description": "La edad no se ajusta por prematuridad y los criterios no se aplican a hospitalizaciones por nacimiento, niños con edad posconcepcional <37 semanas o aquellos de ≥18 años."
+    },
+    "saturationOfPeripheralOxygen": {
+      "primary": "SpO₂",
+      "secondary": "Saturación de oxígeno periférico.",
+      "description": "Calculado solo cuando SpO₂ es ≤97%."
+    },
+    "fractionOfInspiredOxygen": {
+      "primary": "FiO₂",
+      "secondary": "Fracción inspirada de oxígeno"
+    },
+    "respiratorySupport": {
+      "primary": "Grado de asistencia respiratoria",
+      "description": "La asistencia respiratoria no invasiva incluye oxígeno, alto flujo y presión positiva no invasiva."
+    },
+    "vasoactiveMedicationCount": {
+      "primary": "Recuento de medicamentos vasoactivos",
+      "description": "Los medicamentos vasoactivos incluyen cualquier dosis de epinefrina, norepinefrina, dopamina, dobutamina, milrinona y/o vasopresina (para el shock)."
+    },
+    "lactateConcentration": {
+      "primary": "Concentración de lactato",
+      "description": "El lactato puede ser arterial o venoso."
+    },
+    "meanArterialPressure": {
+      "primary": "MAP",
+      "secondary": "Presión arterial media",
+      "description": "Utilice preferentemente la presión arterial media medida (arterial invasiva si está disponible o oscilométrica no invasiva) y, si la presión arterial media medida no está disponible, se puede utilizar como alternativa una presión arterial media calculada (⅓ × sistólica + ⅔ × diastólica)."
+    },
+    "plateletConcentration": {
+      "primary": "Concentración de plaquetas"
+    },
+    "internationalNormalizedRatio": {
+      "primary": "INR",
+      "secondary": "Razón internacional normalizada"
+    },
+    "dDimerConcentration": {
+      "primary": "Concentración de dímero D"
+    },
+    "fibrinogenConcentration": {
+      "primary": "Concentración de fibrinógeno"
+    },
+    "glasgowComaScale": {
+      "primary": "GCS",
+      "secondary": "Escala de coma de Glasgow",
+      "description": "La puntuación de la Escala de Coma de Glasgow mide el nivel de conciencia basándose en la respuesta verbal, ocular y motora y oscila entre 3 y 15, y una puntuación más alta indica una mejor función neurológica."
+    },
+    "pupilState": {
+      "primary": "Estado de la pupila"
+    }
+  },
+  "ageBandLabels": {
+    "lessThanOneMonth": "<1 mes",
+    "oneToLessThanTwelveMonths": "1 a <12 meses",
+    "oneToLessThanTwoYears": "1 a <2 años",
+    "twoToLessThanFiveYears": "2 a <5 años",
+    "fiveToLessThanTwelveYears": "5 a <12 años",
+    "twelveToLessThanEighteenYears": "12 a <18 años"
+  },
+  "parameterCount": "Parámetro ${1} de ${2}",
+  "invalidValue": "Valor no válido",
+  "respiratorySupportLabels": {
+    "none": "Ningún",
+    "nonInvasive": "Asistencia respiratoria no invasiva",
+    "invasive": "Ventilación mecánica invasiva"
+  },
+  "pupilStateLabels": {
+    "reactive": "Pupilas reactivas",
+    "fixedBilaterally": "Pupilas fijadas bilateralmente"
+  },
+  "parameterTypeLabels": {
+    "other": "Otro",
+    "respiratory": "Respiratorio",
+    "cardiovascular": "Cardiovascular",
+    "coagulation": "Coagulación",
+    "neurological": "Neurológico"
+  },
+  "omitted": "Omitido",
+  "appearanceLabels": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
+  },
+  "diagnosisLabels": {
+    "noDiagnosis": "No diagnosis",
+    "noSepsis": "No sepsis",
+    "sepsis": "Septicemia",
+    "septicShock": "Shock séptico"
+  },
+  "scoreLabel": "Sepsis de Phoenix Puntuación de ${1}"
+}
