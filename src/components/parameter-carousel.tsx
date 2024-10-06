@@ -1,8 +1,6 @@
 "use client";
 
-import ParameterLabel from "@/components/parameter-label";
 import { Dictionary } from "@/interfaces/dictionary";
-import { Parameter } from "@/interfaces/parameter";
 import { ParameterControlElement } from "@/interfaces/parameter-control-element";
 import { useCheckStore } from "@/state/check-store";
 import { MutableRefObject } from "react";

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Dictionary } from "@/interfaces/dictionary";
-import { Parameter, PARAMETERS } from "@/interfaces/parameter";
+import { PARAMETERS } from "@/interfaces/parameter";
 import { ParameterControlElement } from "@/interfaces/parameter-control-element";
 import { useCheckStore } from "@/state/check-store";
 import {
@@ -61,7 +61,7 @@ export default function NewCheck({
 
   useEffect(() => {
     setGlobalValidationError(false);
-  }, []);
+  }, [setGlobalValidationError]);
 
   const progress = useMemo(() => {
     const index = PARAMETERS.indexOf(selectedParameter);

@@ -6,7 +6,6 @@ import { Dictionary } from "@/interfaces/dictionary";
 import { DimensionlessParameter } from "@/interfaces/parameter";
 import { ParameterControlElement } from "@/interfaces/parameter-control-element";
 import setRef from "@/lib/set-ref";
-import { cn } from "@/lib/utils";
 import {
   CheckStore,
   defaultCheckState,
@@ -68,7 +67,7 @@ export default function DimensionlessParameterInput({
       setGlobalValidationError(false);
       setValidationError(false);
     }
-  }, [omitted]);
+  }, [omitted, setGlobalValidationError]);
 
   return (
     <div className=" flex flex-col gap-4 justify-end p-4 overflow-y-scroll max-w-lg mx-auto w-full">

@@ -1,18 +1,20 @@
 "use client";
 
 import { CheckSchema } from "@/interfaces/check";
-import { D_DIMER_CONCENTRATION_UNITS } from "@/units/d-dimer-concentration-unit";
 import { Dictionary } from "@/interfaces/dictionary";
-import { FIBRINOGEN_CONCENTRATION_UNITS } from "@/units/fibrinogen-concentration-unit";
-import { LACTATE_CONCENTRATION_UNITS } from "@/units/lactate-concentration-unit";
-import { MEAN_ARTERIAL_PRESSURE_UNITS } from "@/units/mean-arterial-pressure-unit";
 import { UnitfulParameter } from "@/interfaces/parameter";
-import { PLATELET_CONCENTRATION_UNITS } from "@/units/platelet-concentration-unit";
+import { ParameterControlElement } from "@/interfaces/parameter-control-element";
+import setRef from "@/lib/set-ref";
 import {
   CheckStore,
   defaultCheckState,
   useCheckStore,
 } from "@/state/check-store";
+import { D_DIMER_CONCENTRATION_UNITS } from "@/units/d-dimer-concentration-unit";
+import { FIBRINOGEN_CONCENTRATION_UNITS } from "@/units/fibrinogen-concentration-unit";
+import { LACTATE_CONCENTRATION_UNITS } from "@/units/lactate-concentration-unit";
+import { MEAN_ARTERIAL_PRESSURE_UNITS } from "@/units/mean-arterial-pressure-unit";
+import { PLATELET_CONCENTRATION_UNITS } from "@/units/platelet-concentration-unit";
 import {
   ChangeEventHandler,
   MutableRefObject,
@@ -20,6 +22,7 @@ import {
   useState,
 } from "react";
 import { useShallow } from "zustand/react/shallow";
+import ParameterLabel from "../parameter-label";
 import { Input } from "../ui/input";
 import {
   Select,
@@ -28,11 +31,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import setRef from "@/lib/set-ref";
-import { ParameterControlElement } from "@/interfaces/parameter-control-element";
-import { cn } from "@/lib/utils";
-import { Label } from "../ui/label";
-import ParameterLabel from "../parameter-label";
 
 export default function ParameterInput<Unit>({
   dictionary,
@@ -87,7 +85,7 @@ export default function ParameterInput<Unit>({
       setGlobalValidationError(false);
       setValidationError(false);
     }
-  }, [omitted]);
+  }, [omitted, setGlobalValidationError]);
 
   const getCases = () => {
     switch (parameter) {
