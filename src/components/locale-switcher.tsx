@@ -19,6 +19,12 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 export default function LocaleSwitcher({
   locale,
@@ -52,10 +58,19 @@ export default function LocaleSwitcher({
   if (target === "dropdown") {
     return (
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost">
-            <GlobeIcon />
-          </Button>
+        <DropdownMenuTrigger>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost">
+                  <GlobeIcon />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Change locale</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           {i18n.locales.map((locale) => (

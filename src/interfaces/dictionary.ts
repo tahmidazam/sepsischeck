@@ -104,4 +104,10 @@ export interface Dictionary {
     septicShock: string;
   };
   scoreLabel: string;
+  tooltips: {
+    returnHome: string;
+    changeAppearance: string;
+    changeLocale: string;
+    openParameterDescription: string;
+  };
 }
