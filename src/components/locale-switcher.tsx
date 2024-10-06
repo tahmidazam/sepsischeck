@@ -57,35 +57,35 @@ export default function LocaleSwitcher({
 
   if (target === "dropdown") {
     return (
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
+      <TooltipProvider>
+        <Tooltip>
+          <DropdownMenu>
+            <TooltipTrigger asChild>
+              <DropdownMenuTrigger asChild>
                 <Button variant="ghost">
                   <GlobeIcon />
                 </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Change locale</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          {i18n.locales.map((locale) => (
-            <DropdownMenuCheckboxItem
-              key={locale}
-              checked={currentLocale === locale}
-              onCheckedChange={() => {
-                handleValueChange(locale);
-              }}
-            >
-              {dictionary.locales[locale]}
-            </DropdownMenuCheckboxItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
+              </DropdownMenuTrigger>
+            </TooltipTrigger>
+            <DropdownMenuContent align="end">
+              {i18n.locales.map((locale) => (
+                <DropdownMenuCheckboxItem
+                  key={locale}
+                  checked={currentLocale === locale}
+                  onCheckedChange={() => {
+                    handleValueChange(locale);
+                  }}
+                >
+                  {dictionary.locales[locale]}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <TooltipContent>
+            <p>Change locale</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     );
   }
 
