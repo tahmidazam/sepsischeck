@@ -13,9 +13,8 @@ import {
   Cross2Icon,
   PlusIcon,
 } from "@radix-ui/react-icons";
-import useEmblaCarousel from "embla-carousel-react";
 import { useRouter } from "next/navigation";
-import { MutableRefObject, useEffect, useMemo, useRef } from "react";
+import { MutableRefObject, useEffect, useMemo, useRef, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { Locale } from "../../../../i18n.config";
 import ParameterCarousel from "../../../components/parameter-carousel";
@@ -47,37 +46,22 @@ export default function NewCheck({
   const setSelectedParameter = useCheckStore(
     useShallow((state) => state.setSelectedParameter)
   );
-
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    duration: 15,
-  });
+  const setGlobalValidationError = useCheckStore(
+    useShallow((state) => state.setGlobalValidationError)
+  );
 
   const controlRefs: MutableRefObject<Map<string, ParameterControlElement>> =
     useRef(new Map());
 
   useEffect(() => {
-    if (!emblaApi) return;
+    const nextControl = controlRefs.current.get(selectedParameter);
 
-    setSelectedParameter(
-      PARAMETERS[emblaApi.selectedScrollSnap()] as Parameter
-    );
-
-    emblaApi.on("select", () => {
-      const selectedScrollSnap = emblaApi.selectedScrollSnap();
-
-      setSelectedParameter(PARAMETERS[selectedScrollSnap] as Parameter);
-
-      const nextControl = controlRefs.current.get(
-        PARAMETERS[selectedScrollSnap]
-      );
-
-      if (nextControl) nextControl.focus({ preventScroll: true });
-    });
-  }, [emblaApi, setSelectedParameter]);
+    if (nextControl) nextControl.focus({ preventScroll: true });
+  }, [selectedParameter]);
 
   useEffect(() => {
-    if (emblaApi) emblaApi.reInit({ watchDrag: !globalValidationError });
-  }, [emblaApi, globalValidationError]);
+    setGlobalValidationError(false);
+  }, []);
 
   const progress = useMemo(() => {
     const index = PARAMETERS.indexOf(selectedParameter);
@@ -89,10 +73,13 @@ export default function NewCheck({
     if (globalValidationError) return;
 
     if (selectedParameter === "pupilState") {
+      setLoading("Saving check...");
       const id = saveCheck();
       router.push(`/${locale}/check/${id}`);
     } else {
-      if (emblaApi) emblaApi.scrollNext();
+      setSelectedParameter(
+        PARAMETERS[PARAMETERS.indexOf(selectedParameter) + 1]
+      );
     }
   };
 
@@ -101,18 +88,23 @@ export default function NewCheck({
   const previous = () => {
     if (globalValidationError || selectedParameter === "ageBand") return;
 
-    if (emblaApi) emblaApi.scrollPrev();
+    setSelectedParameter(PARAMETERS[PARAMETERS.indexOf(selectedParameter) - 1]);
   };
+
+  const [loading, setLoading] = useState<string | null>(null);
+
+  if (loading)
+    return (
+      <div className="flex-grow flex flex-col items-center justify-center">
+        <p className="text-sm text-muted-foreground text-center">{loading}</p>
+      </div>
+    );
 
   return (
     <div className="flex flex-col justify-between">
       <Progress value={progress} />
 
-      <ParameterCarousel
-        dictionary={dictionary}
-        emblaRef={emblaRef}
-        controlRefs={controlRefs}
-      />
+      <ParameterCarousel dictionary={dictionary} controlRefs={controlRefs} />
 
       <div className="grid grid-cols-3 gap-2 px-4 max-w-lg mx-auto w-full">
         <Button
@@ -121,6 +113,7 @@ export default function NewCheck({
           onClick={previous}
         >
           <ChevronLeftIcon className="mr-2 h-4 w-4" />
+
           {dictionary.buttons.previous}
         </Button>
 
@@ -131,11 +124,13 @@ export default function NewCheck({
           {selectedParameterOmitted ? (
             <>
               <PlusIcon className="mr-2 h-4 w-4" />
+
               {dictionary.buttons.add}
             </>
           ) : (
             <>
               <Cross2Icon className="mr-2 h-4 w-4" />
+
               {dictionary.buttons.omit}
             </>
           )}

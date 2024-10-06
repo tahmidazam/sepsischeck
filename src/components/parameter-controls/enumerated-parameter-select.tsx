@@ -17,6 +17,7 @@ import setRef from "@/lib/set-ref";
 import { CheckStore, useCheckStore } from "@/state/check-store";
 import { MutableRefObject } from "react";
 import { useShallow } from "zustand/react/shallow";
+import ParameterLabel from "../parameter-label";
 
 export default function EnumeratedParameterSelect<Option extends string>({
   dictionary,
@@ -53,21 +54,25 @@ export default function EnumeratedParameterSelect<Option extends string>({
   } = dictionary[`${parameter}Labels`];
 
   return (
-    <Select
-      value={omitted ? undefined : storeValue}
-      onValueChange={setStoreValue}
-      disabled={omitted}
-    >
-      <SelectTrigger ref={(node) => setRef(controlRefs, parameter, node)}>
-        <SelectValue placeholder="--" />
-      </SelectTrigger>
-      <SelectContent>
-        {getCases().map((key) => (
-          <SelectItem key={key} value={key}>
-            {labelDictionary[key]}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <div className=" flex flex-col gap-4 justify-end p-4 overflow-y-scroll max-w-lg mx-auto w-full">
+      <ParameterLabel parameter={parameter} dictionary={dictionary} />
+
+      <Select
+        value={omitted ? undefined : storeValue}
+        onValueChange={setStoreValue}
+        disabled={omitted}
+      >
+        <SelectTrigger ref={(node) => setRef(controlRefs, parameter, node)}>
+          <SelectValue placeholder="--" />
+        </SelectTrigger>
+        <SelectContent>
+          {getCases().map((key) => (
+            <SelectItem key={key} value={key}>
+              {labelDictionary[key]}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
   );
 }

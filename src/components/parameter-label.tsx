@@ -12,14 +12,20 @@ import {
 import { Dictionary } from "@/interfaces/dictionary";
 import { Parameter, PARAMETERS } from "@/interfaces/parameter";
 import getParameterType from "@/lib/get-parameter-type";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { cn } from "@/lib/utils";
+import {
+  ExclamationTriangleIcon,
+  InfoCircledIcon,
+} from "@radix-ui/react-icons";
 
 export default function ParameterLabel({
   parameter,
   dictionary,
+  presentError,
 }: {
   parameter: Parameter;
   dictionary: Dictionary;
+  presentError?: boolean;
 }) {
   const parameterDictionary: {
     primary: string;
@@ -30,10 +36,13 @@ export default function ParameterLabel({
   return (
     <div className="flex flex-row">
       <div className="flex-grow">
-        <p className="font-medium">
+        <p className={cn("font-medium", presentError && "text-destructive")}>
+          {presentError && (
+            <ExclamationTriangleIcon className="align-middle inline mr-2" />
+          )}
           {parameterDictionary.secondary
             ? `${dictionary.parameters[parameter].primary} (${parameterDictionary.secondary})`
-            : dictionary.parameters[parameter].primary}
+            : dictionary.parameters[parameter].primary}{" "}
         </p>
 
         <p className="text-xs text-muted-foreground">
