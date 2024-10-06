@@ -64,24 +64,24 @@ export const defaultCheckState: CheckState = {
     respiratorySupport: "none",
     vasoactiveMedicationCount: 0,
     lactateConcentration: {
-      value: 0,
+      value: 1.5,
       unit: "mmol/L",
     },
     meanArterialPressure: {
-      value: 0,
+      value: 70,
       unit: "mmHg",
     },
     plateletConcentration: {
-      value: 0,
+      value: 150,
       unit: "× 10⁹/L",
     },
     internationalNormalizedRatio: 1,
     dDimerConcentration: {
-      value: 0,
+      value: 0.3,
       unit: "mg/L FEU",
     },
     fibrinogenConcentration: {
-      value: 0,
+      value: 3,
       unit: "g/L",
     },
     glasgowComaScale: 15,
