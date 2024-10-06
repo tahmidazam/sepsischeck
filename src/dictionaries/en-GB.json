@@ -104,5 +104,11 @@
     "sepsis": "Sepsis",
     "septicShock": "Septic shock"
   },
-  "scoreLabel": "Phoenix Sepsis Score of ${1}"
+  "scoreLabel": "Phoenix Sepsis Score of ${1}",
+  "tooltips": {
+    "returnHome": "Return home",
+    "changeAppearance": "Change appearance",
+    "changeLocale": "Change locale",
+    "openParameterDescription": "Open parameter description"
+  }
 }

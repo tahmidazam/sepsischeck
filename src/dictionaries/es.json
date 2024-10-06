@@ -104,5 +104,11 @@
     "sepsis": "Septicemia",
     "septicShock": "Shock séptico"
   },
-  "scoreLabel": "Sepsis de Phoenix Puntuación de ${1}"
+  "scoreLabel": "Sepsis de Phoenix Puntuación de ${1}",
+  "tooltips": {
+    "returnHome": "Volver a casa",
+    "changeAppearance": "Cambiar apariencia",
+    "changeLocale": "Cambiar localidad",
+    "openParameterDescription": "Abrir descripción del parámetro"
+  }
 }
