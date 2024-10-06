@@ -13,7 +13,12 @@ import {
   defaultCheckState,
   useCheckStore,
 } from "@/state/check-store";
-import { ChangeEventHandler, MutableRefObject, useState } from "react";
+import {
+  ChangeEventHandler,
+  MutableRefObject,
+  useEffect,
+  useState,
+} from "react";
 import { useShallow } from "zustand/react/shallow";
 import { Input } from "../ui/input";
 import {
@@ -26,6 +31,8 @@ import {
 import setRef from "@/lib/set-ref";
 import { ParameterControlElement } from "@/interfaces/parameter-control-element";
 import { cn } from "@/lib/utils";
+import { Label } from "../ui/label";
+import ParameterLabel from "../parameter-label";
 
 export default function ParameterInput<Unit>({
   dictionary,
@@ -52,11 +59,11 @@ export default function ParameterInput<Unit>({
     useShallow((state) => state.newCheck.omittedParameters.includes(parameter))
   );
   const setGlobalValidationError = useCheckStore(
-    useShallow((state) => state.setValidationError)
+    useShallow((state) => state.setGlobalValidationError)
   );
 
   const [value, setValue] = useState<string>(String(storeValue));
-  const [validationError, setValidationError] = useState<string | null>(null);
+  const [validationError, setValidationError] = useState<boolean>(false);
 
   const handleOnChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setValue(event.target.value);
@@ -67,13 +74,20 @@ export default function ParameterInput<Unit>({
 
     if (omitted || (result.success && event.target.value !== "")) {
       setStoreValue(result.data ?? defaultCheckState.newCheck[parameter].value);
-      setValidationError(null);
+      setValidationError(false);
       setGlobalValidationError(false);
     } else {
-      setValidationError(dictionary.invalidValue);
+      setValidationError(true);
       setGlobalValidationError(true);
     }
   };
+
+  useEffect(() => {
+    if (omitted) {
+      setGlobalValidationError(false);
+      setValidationError(false);
+    }
+  }, [omitted]);
 
   const getCases = () => {
     switch (parameter) {
@@ -91,36 +105,41 @@ export default function ParameterInput<Unit>({
   };
 
   return (
-    <div className="grid grid-cols-3 gap-2">
-      <Input
-        className={cn(
-          "text-right col-span-2",
-          validationError && "bg-destructive/20"
-        )}
-        value={omitted ? "--" : value}
-        onChange={handleOnChange}
-        disabled={omitted}
-        ref={(node) => setRef(controlRefs, parameter, node)}
-        tabIndex={-1}
-        inputMode="decimal"
+    <div className=" flex flex-col gap-4 justify-end p-4 overflow-y-scroll max-w-lg mx-auto w-full">
+      <ParameterLabel
+        parameter={parameter}
+        dictionary={dictionary}
+        presentError={validationError}
       />
 
-      <Select
-        value={omitted ? undefined : storeUnitValue}
-        onValueChange={(value) => setStoreUnitValue(value as Unit)}
-        disabled={omitted}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder="--" />
-        </SelectTrigger>
-        <SelectContent>
-          {getCases().map((key) => (
-            <SelectItem key={key} value={key}>
-              {key}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <div className="grid grid-cols-3 gap-2">
+        <Input
+          className="text-right col-span-2"
+          value={omitted ? "--" : value}
+          onChange={handleOnChange}
+          disabled={omitted}
+          ref={(node) => setRef(controlRefs, parameter, node)}
+          tabIndex={-1}
+          inputMode="decimal"
+        />
+
+        <Select
+          value={omitted ? undefined : storeUnitValue}
+          onValueChange={(value) => setStoreUnitValue(value as Unit)}
+          disabled={omitted}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="--" />
+          </SelectTrigger>
+          <SelectContent>
+            {getCases().map((key) => (
+              <SelectItem key={key} value={key}>
+                {key}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }

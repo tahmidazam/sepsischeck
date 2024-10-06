@@ -49,7 +49,7 @@ interface CheckAction {
   setPupilState: (pupilState: PupilState) => void;
   setSelectedParameter: (parameter: Parameter) => void;
   toggleParameterOmission: (parameter: Parameter) => void;
-  setValidationError: (value: boolean) => void;
+  setGlobalValidationError: (value: boolean) => void;
   reset: () => void;
   saveCheck: () => string;
 }
@@ -210,7 +210,7 @@ export const useCheckStore = create<CheckStore>()(
           }
         });
       },
-      setValidationError: (value: boolean) => {
+      setGlobalValidationError: (value: boolean) => {
         set((state) => {
           state.validationError = value;
         });

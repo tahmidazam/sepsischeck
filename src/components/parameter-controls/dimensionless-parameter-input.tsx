@@ -12,8 +12,14 @@ import {
   defaultCheckState,
   useCheckStore,
 } from "@/state/check-store";
-import { ChangeEventHandler, MutableRefObject, useState } from "react";
+import {
+  ChangeEventHandler,
+  MutableRefObject,
+  useEffect,
+  useState,
+} from "react";
 import { useShallow } from "zustand/react/shallow";
+import ParameterLabel from "../parameter-label";
 
 export default function DimensionlessParameterInput({
   dictionary,
@@ -36,11 +42,11 @@ export default function DimensionlessParameterInput({
     useShallow((state) => state.newCheck.omittedParameters.includes(parameter))
   );
   const setGlobalValidationError = useCheckStore(
-    useShallow((state) => state.setValidationError)
+    useShallow((state) => state.setGlobalValidationError)
   );
 
   const [value, setValue] = useState<string>(String(storeValue));
-  const [validationError, setValidationError] = useState<string | null>(null);
+  const [validationError, setValidationError] = useState<boolean>(false);
 
   const handleOnChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setValue(event.target.value);
@@ -49,30 +55,42 @@ export default function DimensionlessParameterInput({
 
     if (omitted || (result.success && event.target.value !== "")) {
       setStoreValue(result.data ?? defaultCheckState.newCheck[parameter]);
-      setValidationError(null);
+      setValidationError(false);
       setGlobalValidationError(false);
     } else {
-      setValidationError(dictionary.invalidValue);
+      setValidationError(true);
       setGlobalValidationError(true);
     }
   };
 
+  useEffect(() => {
+    if (omitted) {
+      setGlobalValidationError(false);
+      setValidationError(false);
+    }
+  }, [omitted]);
+
   return (
-    <div className="flex flex-row items-center gap-2">
-      <Input
-        className={cn(
-          "text-right col-span-2",
-          validationError && "bg-destructive/20"
-        )}
-        value={omitted ? "--" : value}
-        onChange={handleOnChange}
-        disabled={omitted}
-        ref={(node) => setRef(controlRefs, parameter, node)}
-        tabIndex={-1}
-        inputMode="decimal"
+    <div className=" flex flex-col gap-4 justify-end p-4 overflow-y-scroll max-w-lg mx-auto w-full">
+      <ParameterLabel
+        parameter={parameter}
+        dictionary={dictionary}
+        presentError={validationError}
       />
 
-      {trailingText && <p>{trailingText}</p>}
+      <div className="flex flex-row items-center gap-2">
+        <Input
+          className="text-right col-span-2"
+          value={omitted ? "--" : value}
+          onChange={handleOnChange}
+          disabled={omitted}
+          ref={(node) => setRef(controlRefs, parameter, node)}
+          tabIndex={-1}
+          inputMode="decimal"
+        />
+
+        {trailingText && <p>{trailingText}</p>}
+      </div>
     </div>
   );
 }
