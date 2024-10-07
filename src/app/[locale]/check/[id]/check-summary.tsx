@@ -1,6 +1,7 @@
 "use client";
 
 import DownloadButton from "@/components/download-button";
+import Guidance from "@/components/guidance";
 import NewCheckButton from "@/components/new-check-button";
 import { DataTable } from "@/components/ui/data-table";
 import { CheckResult } from "@/interfaces/check-result";
@@ -55,6 +56,9 @@ export default function CheckSummary({
             {dictionary.scoreLabel.replace("${1}", String(score))}
           </p>
         </div>
+
+        {diagnosis === "sepsis" ||
+          (diagnosis === "septicShock" && <Guidance />)}
 
         <DataTable
           columns={[
