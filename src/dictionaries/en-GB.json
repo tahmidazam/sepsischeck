@@ -128,7 +128,7 @@
   "privacyPolicy": "SepsisCheck does not use cookies. Checks are saved to local storage and can be deleted by removing website data.",
   "disclaimer": {
     "title": "Disclaimer",
-    "short": "SepsisCheck is an untested, proof-of-concept program and is not a substitute for professional medical direction and is built as a proof-of-concept.",
+    "short": "SepsisCheck is an untested, proof-of-concept program and is not a substitute for professional medical direction.",
     "full": "SepsisCheck accepts no liability for any damages, losses, or consequences arising from the use of this tool. The application is provided “as is,” without any guarantees of accuracy, reliability, or suitability for medical decision-making. Use of SepsisCheck is at your own risk."
   },
   "table": {
