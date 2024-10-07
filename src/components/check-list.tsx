@@ -17,6 +17,7 @@ import {
 import { Button } from "./ui/button";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import Footer from "./footer";
+import Link from "next/link";
 
 export default function CheckList({
   locale,
@@ -104,9 +105,11 @@ export default function CheckList({
       </div>
 
       <div className="flex flex-row justify-center">
-        <Button variant="secondary">
-          <GitHubLogoIcon className="mr-2" />
-          {dictionary.buttons.viewOnGitHub}
+        <Button variant="secondary" asChild>
+          <Link href="https://github.com/tahmidazam/sepsischeck">
+            <GitHubLogoIcon className="mr-2" />
+            {dictionary.buttons.viewOnGitHub}
+          </Link>
         </Button>
       </div>
 
