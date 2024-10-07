@@ -6,6 +6,7 @@ A mobile diagnostic tool for paediatric sepsis and septic shock diagnosis based 
 - Support for partial patient information
 - Auto-focusing of input fields and rapid navigation
 - Rich parameter information sourced from (Schlapbach et al., 2024)
+- SSC guidance for sepsis and septic shock
 - Download as JavaScript Object Notation (JSON)
 - Persistent history of checks
 - Localisation to English (UK) and Spanish
