@@ -27,6 +27,8 @@ export default function Footer({
         className
       )}
     >
+      <p className="text-destructive">{dictionary.disclaimer.full}</p>
+
       <Link
         href="https://doi.org/10.1001/jama.2024.0179"
         className="hover:underline"
@@ -44,10 +46,9 @@ export default function Footer({
         .
       </p>
 
-      <div
-        className="flex flex-row gap-2"
+      <p
         style={{
-          justifyContent: "inherit",
+          textAlign: "inherit",
         }}
       >
         <Dialog>
@@ -70,18 +71,14 @@ export default function Footer({
             </DialogFooter>
           </DialogContent>
         </Dialog>
-
-        <Separator orientation="vertical" />
-
+        {" | "}
         <Link
           href="https://github.com/tahmidazam/sepsischeck/blob/main/LICENSE"
           className="hover:underline"
         >
           {dictionary.links.license}
         </Link>
-
-        <Separator orientation="vertical" />
-
+        {" | "}
         <Dialog>
           <DialogTrigger className="hover:underline">
             {dictionary.links.privacyPolicy}
@@ -102,7 +99,7 @@ export default function Footer({
             </DialogFooter>
           </DialogContent>
         </Dialog>
-      </div>
+      </p>
     </div>
   );
 }

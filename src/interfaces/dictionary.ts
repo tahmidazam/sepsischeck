@@ -125,4 +125,9 @@ export interface Dictionary {
   };
   acknowledgements: string;
   privacyPolicy: string;
+  disclaimer: {
+    title: string;
+    short: string;
+    full: string;
+  };
 }
