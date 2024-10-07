@@ -1,7 +1,6 @@
 import { ChevronDownIcon, ReloadIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { ReactNode, useState } from "react";
-import { Button } from "./ui/button";
+import { ReactNode } from "react";
 
 const STEPS: string[] = [
   "Obtain IV/IO access",
@@ -50,7 +49,7 @@ export default function Guidance() {
 
       <div className="flex flex-col gap-2">
         {STEPS.map((step, index) => (
-          <GuidanceStep number={String(index + 1)} label={step} />
+          <GuidanceStep key={index} number={String(index + 1)} label={step} />
         ))}
       </div>
 
