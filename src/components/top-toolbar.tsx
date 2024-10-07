@@ -21,7 +21,16 @@ export default function TopToolbar({
   dictionary: Dictionary;
 }) {
   return (
-    <div className="top-0 sticky bg-inherit z-10">
+    <div className="top-0 sticky bg-inherit z-10 flex flex-col">
+      <div className="text-xs bg-destructive border-destructive-foreground text-destructive-foreground">
+        <p className="max-w-lg w-full mx-auto px-4 py-2">
+          <span className="font-medium">{dictionary.disclaimer.title}</span>:{" "}
+          {dictionary.disclaimer.short}
+        </p>
+      </div>
+
+      <Separator />
+
       <div className="max-w-lg w-full px-4 py-2 flex flex-row justify-between mx-auto">
         <TooltipProvider>
           <Tooltip>

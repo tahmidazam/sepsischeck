@@ -93,7 +93,7 @@ export default function CheckList({
     );
 
   return (
-    <div className="flex flex-col justify-center flex-grow max-w-lg mx-auto w-full py-4 gap-8">
+    <div className="flex flex-col justify-center flex-grow max-w-lg mx-auto w-full p-4 gap-8">
       <div className="flex flex-col gap-2">
         <h1 className="text-3xl font-medium tracking-tight text-center">
           {dictionary.hero.title}
