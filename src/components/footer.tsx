@@ -11,7 +11,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { Separator } from "./ui/separator";
 
 export default function Footer({
   dictionary,
