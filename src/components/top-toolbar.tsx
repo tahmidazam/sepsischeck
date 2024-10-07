@@ -26,14 +26,15 @@ export default function TopToolbar({
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant={"ghost"}>
+              <Button variant={"ghost"} size="icon">
                 <Link href={`/${locale}`}>
                   <HomeIcon />
                 </Link>
               </Button>
             </TooltipTrigger>
+
             <TooltipContent>
-              <p>Return home</p>
+              <p>{dictionary.tooltips.returnHome}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

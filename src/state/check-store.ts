@@ -16,6 +16,7 @@ import { CheckResult } from "@/interfaces/check-result";
 import { CheckComponents } from "@/interfaces/check-components";
 import computeComponents from "@/lib/compute-components";
 import scoreComponents from "@/lib/score-components";
+import { toast } from "sonner";
 
 interface CheckState {
   newCheck: Check;
@@ -52,6 +53,7 @@ interface CheckAction {
   setGlobalValidationError: (value: boolean) => void;
   reset: () => void;
   saveCheck: () => string;
+  deleteCheck: (id: string) => void;
 }
 
 export type CheckStore = CheckState & CheckAction;
@@ -251,6 +253,17 @@ export const useCheckStore = create<CheckStore>()(
         });
 
         return checkId;
+      },
+      deleteCheck: (id: string) => {
+        set((state) => {
+          state.checkResults = state.checkResults.filter(
+            (checkResult) => checkResult.id !== id
+          );
+        });
+
+        toast.success("Check deleted", {
+          duration: 2000,
+        });
       },
     })),
     {

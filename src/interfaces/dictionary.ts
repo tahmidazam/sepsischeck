@@ -8,6 +8,10 @@ export interface Dictionary {
     next: string;
     complete: string;
     download: string;
+    openCheck: string;
+    deleteCheck: string;
+    viewOnGitHub: string;
+    close: string;
   };
   locales: {
     [key: string]: string;
@@ -110,4 +114,15 @@ export interface Dictionary {
     changeLocale: string;
     openParameterDescription: string;
   };
+  links: {
+    acknowledgements: string;
+    privacyPolicy: string;
+    license: string;
+  };
+  hero: {
+    title: string;
+    subtitle: string;
+  };
+  acknowledgements: string;
+  privacyPolicy: string;
 }

@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { getDictionary } from "@/lib/get-dictionary";
 import { Locale } from "../../../i18n.config";
 
-export default async function Home({
+export default async function HomePage({
   params: { locale },
 }: {
   params: { locale: Locale };
@@ -13,9 +13,7 @@ export default async function Home({
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      <div className="overflow-y-scroll h-full">
-        <CheckList locale={locale} dictionary={dictionary} />
-      </div>
+      <CheckList locale={locale} dictionary={dictionary} />
 
       <Separator />
 

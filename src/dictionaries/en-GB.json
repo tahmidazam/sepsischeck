@@ -7,7 +7,11 @@
     "omit": "Omit",
     "next": "Next",
     "complete": "Complete",
-    "download": "Download"
+    "download": "Download",
+    "openCheck": "Open check",
+    "deleteCheck": "Delete check",
+    "viewOnGitHub": "View on GitHub",
+    "close": "Close"
   },
   "locales": {
     "en-GB": "🇬🇧 English",
@@ -110,5 +114,16 @@
     "changeAppearance": "Change appearance",
     "changeLocale": "Change locale",
     "openParameterDescription": "Open parameter description"
-  }
+  },
+  "links": {
+    "acknowledgements": "Acknowledgements",
+    "privacyPolicy": "Privacy policy",
+    "license": "License"
+  },
+  "hero": {
+    "title": "Welcome to SepsisCheck",
+    "subtitle": "Paediatric sepsis and septic shock diagnostic tool based on the Phoenix Sepsis Score and Criteria."
+  },
+  "acknowledgements": "Clinical guidance and support provided by Dr David Inwald. Spanish localisation provided by Emily Shelley.",
+  "privacyPolicy": "SepsisCheck does not use cookies. Checks are saved to local storage and can be deleted by removing website data."
 }

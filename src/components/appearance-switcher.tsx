@@ -48,7 +48,7 @@ export function AppearanceSwitcher({ dictionary }: { dictionary: Dictionary }) {
           </DropdownMenuContent>
         </DropdownMenu>
         <TooltipContent>
-          <p>Change appearance</p>
+          <p>{dictionary.tooltips.changeAppearance}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
