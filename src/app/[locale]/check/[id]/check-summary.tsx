@@ -60,11 +60,11 @@ export default function CheckSummary({
           columns={[
             {
               accessorKey: "componentLabel",
-              header: "Component",
+              header: dictionary.table.component,
             },
             {
               accessorKey: "score",
-              header: "Score",
+              header: dictionary.table.score,
             },
           ]}
           data={[
@@ -91,11 +91,11 @@ export default function CheckSummary({
           columns={[
             {
               accessorKey: "parameterLabel",
-              header: "Parameter",
+              header: dictionary.table.parameter,
             },
             {
               accessorKey: "value",
-              header: "Value",
+              header: dictionary.table.value,
             },
           ]}
           data={formattedCheck}

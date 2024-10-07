@@ -130,4 +130,10 @@ export interface Dictionary {
     short: string;
     full: string;
   };
+  table: {
+    component: string;
+    score: string;
+    parameter: string;
+    value: string;
+  };
 }

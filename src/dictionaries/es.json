@@ -130,5 +130,11 @@
     "title": "Descargo de responsabilidad",
     "short": "SepsisCheck es un programa de prueba de concepto no probado y no sustituye la dirección médica profesional; está diseñado como una prueba de concepto.",
     "full": "SepsisCheck no asume ninguna responsabilidad por daños, pérdidas o consecuencias derivadas del uso de esta herramienta. La aplicación se proporciona “tal cual”, sin garantías de precisión, fiabilidad o idoneidad para la toma de decisiones médicas. El uso de SepsisCheck se realiza bajo su propio riesgo."
+  },
+  "table": {
+    "component": "Componente",
+    "score": "Puntaje",
+    "parameter": "Parámetro",
+    "value": "Valor"
   }
 }
