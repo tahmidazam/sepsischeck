@@ -62,7 +62,7 @@ export default function LocaleSwitcher({
           <DropdownMenu>
             <TooltipTrigger asChild>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost">
+                <Button variant="ghost" size="icon">
                   <GlobeIcon />
                 </Button>
               </DropdownMenuTrigger>
@@ -82,7 +82,7 @@ export default function LocaleSwitcher({
             </DropdownMenuContent>
           </DropdownMenu>
           <TooltipContent>
-            <p>Change locale</p>
+            <p>{dictionary.tooltips.changeLocale}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

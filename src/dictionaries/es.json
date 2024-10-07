@@ -7,7 +7,11 @@
     "add": "Añadir",
     "next": "Próximo",
     "complete": "Completa",
-    "download": "Descargar"
+    "download": "Descargar",
+    "openCheck": "Cheque abierto",
+    "deleteCheck": "Eliminar cheque",
+    "viewOnGitHub": "Ver en GitHub",
+    "close": "Cerca"
   },
   "locales": {
     "en-GB": "🇬🇧 Inglés",
@@ -110,5 +114,16 @@
     "changeAppearance": "Cambiar apariencia",
     "changeLocale": "Cambiar localidad",
     "openParameterDescription": "Abrir descripción del parámetro"
-  }
+  },
+  "links": {
+    "acknowledgements": "Agradecimientos",
+    "privacyPolicy": "Política de privacidad",
+    "license": "Licencia"
+  },
+  "hero": {
+    "title": "Bienvenido a SepsisCheck",
+    "subtitle": "Herramienta de diagnóstico de sepsis y shock séptico pediátrico basada en el Phoenix Sepsis Score y Criteria."
+  },
+  "acknowledgements": "Orientación y apoyo clínico a cargo del Dr. David Inwald. Localización en español a cargo de Emily Shelley.",
+  "privacyPolicy": "SepsisCheck no utiliza cookies. Los controles se guardan en el almacenamiento local y se pueden eliminar eliminando los datos del sitio web."
 }

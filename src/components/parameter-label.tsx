@@ -67,12 +67,12 @@ export default function ParameterLabel({
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="ghost">
+                  <Button variant="ghost" size="icon">
                     <InfoCircledIcon />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Open parameter description</p>
+                  <p>{dictionary.tooltips.openParameterDescription}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

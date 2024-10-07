@@ -4,6 +4,7 @@ import { getDictionary } from "@/lib/get-dictionary";
 import type { Metadata } from "next";
 import { i18n, Locale } from "../../../i18n.config";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "SepsisCheck",
@@ -36,6 +37,7 @@ export default async function Root({
 
           {children}
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );
