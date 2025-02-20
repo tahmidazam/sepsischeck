@@ -15,9 +15,9 @@ import { PUPIL_STATES } from "@/interfaces/pupil-state";
 import { RESPIRATORY_SUPPORT_CASES } from "@/interfaces/respiratory-support";
 import setRef from "@/lib/set-ref";
 import { CheckStore, useCheckStore } from "@/state/check-store";
-import { MutableRefObject } from "react";
 import { useShallow } from "zustand/react/shallow";
 import ParameterLabel from "../parameter-label";
+import { RefObject } from "react";
 
 export default function EnumeratedParameterSelect<Option extends string>({
   dictionary,
@@ -28,7 +28,7 @@ export default function EnumeratedParameterSelect<Option extends string>({
   dictionary: Dictionary;
   parameter: EnumeratedParameter;
   setterSelector: (state: CheckStore) => (value: Option) => void;
-  controlRefs: MutableRefObject<Map<string, ParameterControlElement>>;
+  controlRefs: RefObject<Map<string, ParameterControlElement>>;
 }) {
   const storeValue = useCheckStore(
     useShallow((state) => state.newCheck[parameter])
@@ -36,6 +36,9 @@ export default function EnumeratedParameterSelect<Option extends string>({
   const setStoreValue = useCheckStore(useShallow(setterSelector));
   const omitted = useCheckStore(
     useShallow((state) => state.newCheck.omittedParameters.includes(parameter))
+  );
+  const selectedParameter = useCheckStore(
+    useShallow((state) => state.selectedParameter)
   );
 
   const getCases = () => {
@@ -53,16 +56,21 @@ export default function EnumeratedParameterSelect<Option extends string>({
     [key: string]: string;
   } = dictionary[`${parameter}Labels`];
 
+  if (selectedParameter !== parameter) return null;
+
   return (
     <div className=" flex flex-col gap-4 justify-end p-4 overflow-y-scroll max-w-lg mx-auto w-full">
       <ParameterLabel parameter={parameter} dictionary={dictionary} />
-
       <Select
         value={omitted ? undefined : storeValue}
         onValueChange={setStoreValue}
         disabled={omitted}
       >
-        <SelectTrigger ref={(node) => setRef(controlRefs, parameter, node)}>
+        <SelectTrigger
+          ref={(node) => {
+            setRef(controlRefs, parameter, node);
+          }}
+        >
           <SelectValue placeholder="--" />
         </SelectTrigger>
         <SelectContent>

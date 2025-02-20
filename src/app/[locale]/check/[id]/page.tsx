@@ -2,11 +2,18 @@ import { getDictionary } from "@/lib/get-dictionary";
 import { Locale } from "../../../../../i18n.config";
 import CheckSummary from "./check-summary";
 
-export default async function CheckPage({
-  params: { locale, id },
-}: {
-  params: { locale: Locale; id: string };
-}) {
+export default async function CheckPage(
+  props: {
+    params: Promise<{ locale: Locale; id: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale,
+    id
+  } = params;
+
   const dictionary = await getDictionary(locale);
 
   return (

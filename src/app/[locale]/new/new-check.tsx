@@ -1,5 +1,6 @@
 "use client";
 
+import ParameterCarousel from "@/components/parameter-carousel";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Dictionary } from "@/interfaces/dictionary";
@@ -14,10 +15,9 @@ import {
   PlusIcon,
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from "react";
+import { RefObject, useEffect, useMemo, useRef, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { Locale } from "../../../../i18n.config";
-import ParameterCarousel from "../../../components/parameter-carousel";
 
 export default function NewCheck({
   locale,
@@ -50,8 +50,9 @@ export default function NewCheck({
     useShallow((state) => state.setGlobalValidationError)
   );
 
-  const controlRefs: MutableRefObject<Map<string, ParameterControlElement>> =
-    useRef(new Map());
+  const controlRefs: RefObject<Map<string, ParameterControlElement>> = useRef(
+    new Map()
+  );
 
   useEffect(() => {
     const nextControl = controlRefs.current.get(selectedParameter);

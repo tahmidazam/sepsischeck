@@ -1,7 +1,7 @@
-import { MutableRefObject } from "react";
+import { RefObject } from "react";
 
 export default function setRef<K, V>(
-  map: MutableRefObject<Map<K, V>>,
+  map: RefObject<Map<K, V>>,
   key: K,
   node: V | null
 ) {

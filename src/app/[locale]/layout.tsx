@@ -15,13 +15,14 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale: locale }));
 }
 
-export default async function Root({
-  children,
-  params,
-}: {
+export default async function Root(props: {
   children: React.ReactNode;
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
+  const params = await props.params;
+
+  const { children } = props;
+
   const dictionary = await getDictionary(params.locale);
 
   return (

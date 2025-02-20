@@ -4,11 +4,17 @@ import { Separator } from "@/components/ui/separator";
 import { getDictionary } from "@/lib/get-dictionary";
 import { Locale } from "../../../i18n.config";
 
-export default async function HomePage({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}) {
+export default async function HomePage(
+  props: {
+    params: Promise<{ locale: Locale }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   const dictionary = await getDictionary(locale);
 
   return (

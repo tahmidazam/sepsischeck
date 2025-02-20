@@ -17,12 +17,6 @@ import {
   ExclamationTriangleIcon,
   InfoCircledIcon,
 } from "@radix-ui/react-icons";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
 
 export default function ParameterLabel({
   parameter,
@@ -63,19 +57,10 @@ export default function ParameterLabel({
 
       {parameterDictionary.description && (
         <Dialog>
-          <DialogTrigger>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <InfoCircledIcon />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{dictionary.tooltips.openParameterDescription}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+          <DialogTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <InfoCircledIcon />
+            </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>

@@ -11,12 +11,7 @@ import {
   defaultCheckState,
   useCheckStore,
 } from "@/state/check-store";
-import {
-  ChangeEventHandler,
-  MutableRefObject,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEventHandler, RefObject, useEffect, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 import ParameterLabel from "../parameter-label";
 
@@ -31,7 +26,7 @@ export default function DimensionlessParameterInput({
   parameter: DimensionlessParameter;
   setterSelector: (state: CheckStore) => (value: number) => void;
   trailingText?: string;
-  controlRefs: MutableRefObject<Map<string, ParameterControlElement>>;
+  controlRefs: RefObject<Map<string, ParameterControlElement>>;
 }) {
   const storeValue = useCheckStore(
     useShallow((state) => state.newCheck[parameter])
@@ -42,6 +37,9 @@ export default function DimensionlessParameterInput({
   );
   const setGlobalValidationError = useCheckStore(
     useShallow((state) => state.setGlobalValidationError)
+  );
+  const selectedParameter = useCheckStore(
+    useShallow((state) => state.selectedParameter)
   );
 
   const [value, setValue] = useState<string>(String(storeValue));
@@ -69,6 +67,8 @@ export default function DimensionlessParameterInput({
     }
   }, [omitted, setGlobalValidationError]);
 
+  if (selectedParameter !== parameter) return null;
+
   return (
     <div className=" flex flex-col gap-4 justify-end p-4 overflow-y-scroll max-w-lg mx-auto w-full">
       <ParameterLabel
@@ -76,14 +76,15 @@ export default function DimensionlessParameterInput({
         dictionary={dictionary}
         presentError={validationError}
       />
-
       <div className="flex flex-row items-center gap-2">
         <Input
           className="text-right col-span-2"
           value={omitted ? "--" : value}
           onChange={handleOnChange}
           disabled={omitted}
-          ref={(node) => setRef(controlRefs, parameter, node)}
+          ref={(node) => {
+            setRef(controlRefs, parameter, node);
+          }}
           tabIndex={-1}
           inputMode="decimal"
         />
